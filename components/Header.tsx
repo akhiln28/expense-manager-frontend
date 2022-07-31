@@ -3,6 +3,9 @@ import {FaAddressBook, FaHome, FaQuestion} from "react-icons/fa";
 
 export function Header() {
     return <div className="flex w-screen justify-around bg-sky-100">
+        <head>
+            <title>Expense Manager</title>
+        </head>
         <div className="p-2">
             <Link href="/">
                 <a>

@@ -1,14 +1,19 @@
-import type { NextPage } from 'next'
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import type {NextPage} from 'next'
+import {Header} from "../components/Header";
+import {Sidebar} from "../components/Sidebar";
 
 const Home: NextPage = () => {
-  return (
-    <h1 className="text-3xl font-bold underline">
-	Hello world	
-    </h1>
-  )
+    return (
+        <div>
+            <div className="flex flex-col">
+                <Header/>
+                <div className="flex">
+                    <Sidebar/>
+
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default Home

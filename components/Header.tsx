@@ -2,7 +2,7 @@ import Link from "next/link";
 import {FaAddressBook, FaHome, FaQuestion} from "react-icons/fa";
 
 export function Header() {
-    return <div className="flex w-screen justify-around bg-sky-100">
+    return <div className="flex w-screen justify-around bg-sky-200">
         <head>
             <title>Expense Manager</title>
         </head>

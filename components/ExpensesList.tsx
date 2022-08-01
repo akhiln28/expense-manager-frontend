@@ -1,12 +1,14 @@
-import {Expense} from "./Expense";
+import { Expense } from "./Expense";
+import { Expense as ExpenseType } from "../pages/Intefaces";
 
-export function ExpensesList() {
+export function ExpensesList({ expenses }: { expenses: ExpenseType[] }) {
     return (
-        <div className="flex flex-row justify-center w-screen">
+        <div className="flex flex-row justify-around w-screen border-2 border-black">
             <div className="flex flex-col">
-                <Expense/>
-                <Expense/>
-                <Expense/>
+                <button className="m-2 p-2 bg-green-100 border-2 border-green-400">Create Expense</button>
+                {expenses.map(expense => (
+                    <Expense key={expense.id} expense={expense} />
+                ))}
             </div>
         </div>
     )

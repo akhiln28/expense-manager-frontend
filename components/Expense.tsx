@@ -1,8 +1,12 @@
-export function Expense() {
+import {Expense as ExpenseType} from "../pages/Intefaces";
+
+export function Expense({expense}: {expense: ExpenseType}) {
     return (
-        <div className="flex">
-            <div className="m-2 p-2 rounded-2xl bg-sky-200">
-                Test expense 1
+        <div className="m-2 p-2 rounded-md bg-sky-100">
+            <div className="flex space-x-2 justify-center">
+                <div>{expense.title}</div>
+                <div>{expense.amount}₹</div>
+                <div>{expense.category}</div>
             </div>
         </div>
     );

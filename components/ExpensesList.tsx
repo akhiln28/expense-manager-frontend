@@ -8,7 +8,7 @@ export function ExpensesList({ expenses }: { expenses: ExpenseType[] }) {
             <div className="flex flex-col">
                 <button className="m-2 p-2 bg-green-100 rounded-md">
                     <Link href="/expenses/add">
-                        <a>Add Expense</a>
+                        <a className={'text-xl'}>Add Expense</a>
                     </Link>
                 </button>
                 {expenses.map(expense => (

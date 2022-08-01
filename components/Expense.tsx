@@ -1,4 +1,4 @@
-import {Expense as ExpenseType} from "../pages/Intefaces";
+import {Expense as ExpenseType} from "../interfaces/Intefaces";
 
 export function Expense({expense}: {expense: ExpenseType}) {
     return (

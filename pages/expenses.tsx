@@ -3,7 +3,7 @@ import { Footer } from "../components/Footer";
 import { Sidebar } from "../components/Sidebar";
 import { ExpensesList } from "../components/ExpensesList";
 import { GetServerSideProps, NextPage } from "next";
-import { Expense } from "./Intefaces";
+import { Expense } from "../interfaces/Intefaces";
 
 const Expenses: NextPage<{ expenses: Expense[] }> = ({expenses}) => {
     return (

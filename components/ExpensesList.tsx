@@ -1,5 +1,5 @@
 import { Expense } from "./Expense";
-import { Expense as ExpenseType } from "../pages/Intefaces";
+import { Expense as ExpenseType } from "../interfaces/Intefaces";
 
 export function ExpensesList({ expenses }: { expenses: ExpenseType[] }) {
     return (

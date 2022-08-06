@@ -4,17 +4,13 @@ import { Sidebar } from "../../components/Sidebar";
 import { ExpensesList } from "../../components/ExpensesList";
 import { GetServerSideProps, NextPage } from "next";
 import { Expense } from "../../interfaces/Intefaces";
+import {Layout} from "../../components/Layout";
 
 const Expenses: NextPage<{ expenses: Expense[] }> = ({expenses}) => {
     return (
-        <div className="flex flex-col">
-            <Header />
-            <div className="flex">
-                <Sidebar />
-                <ExpensesList expenses={expenses} />
-            </div>
-            <Footer />
-        </div>
+        <Layout>
+            <ExpensesList expenses={expenses} />
+        </Layout>
     )
 }
 

@@ -1,5 +1,7 @@
 export function Content() {
     return (
-        <div></div>
+        <div>
+            This is test content. It is not part of the project.
+        </div>
     )
 }

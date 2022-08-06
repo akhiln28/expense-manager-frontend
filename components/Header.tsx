@@ -1,11 +1,12 @@
 import Link from "next/link";
 import {FaAddressBook, FaHome, FaQuestion} from "react-icons/fa";
+import Head from "next/head";
 
 export function Header() {
     return <div className="flex w-screen justify-between bg-blue-500">
-        <head>
+        <Head>
             <title>Expense Manager</title>
-        </head>
+        </Head>
         <div className="p-4 ml-4">
             <Link href="/">
                 <a>

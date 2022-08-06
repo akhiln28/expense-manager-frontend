@@ -1,8 +1,9 @@
 import {Layout} from "../../components/Layout";
 import React from "react";
-import {router} from "next/client";
+import {useRouter} from "next/router";
 
 export default function Add() {
+    const router = useRouter();
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const formData = new FormData(e.target as HTMLFormElement);

@@ -12,13 +12,14 @@ export default function Add() {
             rating: formData.get('rating') as string,
             account: formData.get('account') as string,
         };
+        console.log(data);
         const apiUrl = 'https://pro-expense-manager.herokuapp.com/expense/';
         let options = {
             method: 'POST',
             body: JSON.stringify(data),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
         };
         try {
             const res = await fetch(apiUrl, options);
@@ -26,6 +27,7 @@ export default function Add() {
             console.log(json);
         }
         catch (err) {
+            console.log(data);
             alert(err);
         }
     }

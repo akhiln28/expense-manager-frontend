@@ -1,25 +1,21 @@
 import type {GetServerSideProps, NextPage} from 'next'
 import {Layout} from "../components/Layout";
 import {ExpensesList} from "../components/ExpensesList";
-import {getRecentExpenses} from "./api/expense/expense_crud";
 import {ExpenseInterface} from "../interfaces/types";
-import connectMongo from "../storage/mongodb";
 
-const Home: NextPage<{recentExpenses: ExpenseInterface[]}> = ({recentExpenses}:{recentExpenses: ExpenseInterface[]}) => {
+const Home: NextPage<{ expenses: ExpenseInterface[] }> = ({expenses}) => {
     return (
         <Layout>
-            <ExpensesList expenses={recentExpenses} />
+            <ExpensesList expenses={expenses} />
         </Layout>
     )
 }
 
 export const getServerSideProps: GetServerSideProps = async () => {
-    await connectMongo()
-    const recentExpenses = await getRecentExpenses(5)
-    console.log(recentExpenses)
+    const res = await fetch('https://pro-expense-manager.herokuapp.com/expense/recent/')
     return {
         props: {
-            recentExpenses: recentExpenses
+            expenses: await res.json()
         }
     }
 }

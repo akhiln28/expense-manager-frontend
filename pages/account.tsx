@@ -1,8 +1,12 @@
+import {Layout} from "../components/Layout";
+
 const Account = () => {
     return (
-        <div>
-            <h1>Account</h1>
-        </div>
+        <Layout>
+            <div className="flex mx-auto justify-center">
+                <div className="p-4 text-2xl">Account</div>
+            </div>
+        </Layout>
     );
 }
 

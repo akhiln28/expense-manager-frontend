@@ -1,5 +1,5 @@
 export interface ExpenseInterface {
-    id: string;
+    _id: string;
     title: string;
     time: string;
     amount: number;

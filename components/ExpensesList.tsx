@@ -12,7 +12,7 @@ export function ExpensesList({ expenses }: { expenses: ExpenseInterface[] }) {
                     </Link>
                 </button>
                 {expenses.map(expense => (
-                    <ExpenseComp key={expense.id} expenseItem={expense} />
+                    <ExpenseComp key={expense._id} expenseItem={expense} />
                 ))}
             </div>
         </div>

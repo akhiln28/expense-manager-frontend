@@ -1,8 +1,8 @@
-import {Layout} from "./Layout";
+import {IconType} from "react-icons";
 
 export function SidebarItem({children}: {children: React.ReactNode}) {
     return (
-        <div className={"flex text-xl p-4 hover:bg-blue-400"}>
+        <div className={"flex text-md px-8 py-2 hover:bg-slate-300 items-center"}>
             {children}
         </div>
     );

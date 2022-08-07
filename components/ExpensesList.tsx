@@ -1,8 +1,8 @@
-import { Expense } from "./Expense";
-import { Expense as ExpenseType } from "../interfaces/Intefaces";
+import { ExpenseComp } from "./ExpenseComp";
+import { ExpenseInterface } from "../interfaces/types";
 import Link from "next/link";
 
-export function ExpensesList({ expenses }: { expenses: ExpenseType[] }) {
+export function ExpensesList({ expenses }: { expenses: ExpenseInterface[] }) {
     return (
         <div className="flex flex-row justify-around w-screen">
             <div className="flex flex-col">
@@ -12,7 +12,7 @@ export function ExpensesList({ expenses }: { expenses: ExpenseType[] }) {
                     </Link>
                 </button>
                 {expenses.map(expense => (
-                    <Expense key={expense.id} expense={expense} />
+                    <ExpenseComp key={expense.id} expenseItem={expense} />
                 ))}
             </div>
         </div>

@@ -1,14 +1,14 @@
 import Link from "next/link";
 import classNames from "classnames"
 import {SidebarItem} from "./SidebarItem";
-import {FaArrowLeft, FaBook, FaMoneyBillWave} from "react-icons/fa";
 import React, {useMemo} from "react";
 import {useRouter} from "next/router";
 import {SidebarProps} from "../interfaces/types";
+import {BiBook, BiHome, BiMoney} from "react-icons/bi";
 
 const menuItems: SidebarProps[] = [
-    { id: 1, name: "Home", Icon: FaMoneyBillWave, link: "/" },
-    { id: 2, name: "Expenses", Icon: FaBook, link: "/expenses" },
+    {id: 1, name: "Expenses", Icon: BiMoney, link: "/expenses"},
+    {id: 2, name: "Reports", Icon: BiBook, link: "/reports"},
 ];
 
 export function Sidebar() {
@@ -23,31 +23,23 @@ export function Sidebar() {
         setCollapseIconVisible(!collapseIconVisible);
     }
 
-    function handleSidebarToggle() {
+    function toggleSidebar() {
         setIsCollapsed(!isCollapsed);
     }
 
-    const sidebarClasses = classNames(
-        "flex flex-col py-4 w-auto h-screen hidden lg:block",
-        {
-            ["w-64 lg:w-80"]: !isCollapsed,
-            ["w-16 lg:w-32"]: isCollapsed,
-        }
-    )
-
-    return <div>
-        <div className={sidebarClasses}
-            onMouseEnter={toggleCollapsableIcon} onMouseLeave={toggleCollapsableIcon}>
-
-            {collapseIconVisible && (
-                <button onClick={handleSidebarToggle}>
-                    <FaArrowLeft className={"text-xl m-2"}/>
-                </button>
-            )}
+    return <>
+        <div className={"flex flex-col py-4 w-16 sm:w-80 h-screen"}>
+            <Link href={"/"}>
+                <div className={"flex items-center p-3 hover:cursor-pointer"}>
+                    <BiHome className={"text-3xl mr-2"}/>
+                    <span className={"text-3xl hidden sm:block"}>PEM</span>
+                </div>
+            </Link>
             {menuItems.map(item => {
-                return <SidebarItem key={item.id} sidebarProps={item} />
+                return <SidebarItem key={item.id} sidebarProps={item}
+                                    isActive={item.id === (activeMenu ? activeMenu.id : 0)}/>
             })}
 
         </div>
-    </div>;
+    </>;
 }

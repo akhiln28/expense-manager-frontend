@@ -15,7 +15,7 @@ export function Header() {
         <Head>
             <title>Expense Manager</title>
         </Head>
-        <button onClick={setModalStateTrue} className={"text-xl m-2 p-2 bg-slate-400 rounded-md"}>
+        <button onClick={setModalStateTrue} className={"text-md m-2 p-2 bg-slate-400 rounded-md"}>
             Add Expense
         </button>
 

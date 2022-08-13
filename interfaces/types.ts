@@ -1,7 +1,7 @@
 import {IconType} from "react-icons";
 
 export interface ExpenseInterface {
-    _id: string;
+    id: string;
     title: string;
     time: string;
     amount: number;

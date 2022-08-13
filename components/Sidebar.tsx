@@ -28,7 +28,7 @@ export function Sidebar() {
     }
 
     return <>
-        <div className={"flex flex-col py-4 w-16 sm:w-80 h-screen"}>
+        <div className={"flex flex-col py-4 w-16 sm:w-80 h-screen text-slate-700"}>
             <Link href={"/"}>
                 <div className={"flex items-center p-3 hover:cursor-pointer"}>
                     <BiHome className={"text-3xl mr-2"}/>

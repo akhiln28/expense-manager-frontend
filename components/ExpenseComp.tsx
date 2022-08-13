@@ -1,13 +1,20 @@
 import {ExpenseInterface} from "../interfaces/types";
+import {BiDotsVertical} from "react-icons/bi";
+import {ExpenseKebabMenu} from "./ExpenseKebabMenu";
+import {useState} from "react";
 
 export function ExpenseComp({expenseItem}: {expenseItem: ExpenseInterface}) {
+    const [menuOpen, setMenuOpen] = useState(false);
     return (
-        <div className="m-2 p-2 w-64 mx-auto justify-center rounded-md bg-white">
-            <div className="flex space-x-2 justify-around items-baseline">
-                <div className="text-xl">{expenseItem.title}</div>
+        <div className="m-2 p-2 w-64 mx-auto justify-center shadow-md rounded-md bg-white">
+            <div className="flex relative space-x-2 justify-around items-center">
+                <div className="text-md">{expenseItem.title}</div>
                 <div className="text-red-500">{expenseItem.amount}₹</div>
                 <div className="text-slate-500">{expenseItem.category}</div>
-                {/*create 3 dots menu*/}
+                <button onClick={() => setMenuOpen(true)}>
+                    <BiDotsVertical />
+                </button>
+                {menuOpen && <ExpenseKebabMenu expenseId={expenseItem.id} setMenuOpen={setMenuOpen}/>}
             </div>
         </div>
     );

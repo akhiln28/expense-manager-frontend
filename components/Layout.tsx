@@ -5,13 +5,13 @@ import {Sidebar} from "./Sidebar";
 
 export function Layout({children}: {children: React.ReactNode}) {
     return (
-        <div className="flex flex-col w-screen">
-            <Header/>
-            <div className={"flex flex-row w-full"}>
-                <Sidebar/>
+        <div className="flex flex-row w-screen">
+            <Sidebar/>
+            <div className={"flex flex-col bg-slate-100 w-full"}>
+                <Header/>
                 {children}
             </div>
-            <Footer/>
+            {/*<Footer/>*/}
         </div>
     )
 }

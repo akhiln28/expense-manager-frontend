@@ -89,7 +89,7 @@ export function ExpenseKebabMenu({
         <>
             <div className={"fixed top-0 left-0 z-10 w-screen h-screen bg-slate-200 opacity-30"}
                  onClick={() => setMenuOpen(false)}/>
-            <div className="flex absolute top-0 right-0 z-20 flex-col fixed bg-slate-200 rounded-md p-2">
+            <div className="flex absolute top-0 right-0 z-20 flex-col fixed bg-slate-200 rounded-md p-2 shadow-md">
                 <button className={"p-1"}>Edit</button>
                 <button className={"p-1"} onClick={handleDeleteExpense}>Delete</button>
                 <button className={"p-1"} onClick={handleAddExpense}>Duplicate</button>

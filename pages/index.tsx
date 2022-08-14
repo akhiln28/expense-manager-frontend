@@ -28,7 +28,7 @@ const Home: NextPage = () => {
 
     return (
         <Layout>
-            <ExpensesList expenses={expenses} />
+            <ExpensesList title={"Recent Expenses"} expenses={expenses} />
         </Layout>
     )
 }

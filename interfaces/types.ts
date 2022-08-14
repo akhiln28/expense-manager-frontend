@@ -10,6 +10,7 @@ export interface ExpenseProps {
     payee: string;
     currency: string;
     description: string;
+    account: string;
     rating: number;
 }
 

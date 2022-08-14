@@ -1,15 +1,15 @@
 import {ExpenseComp} from "./ExpenseComp";
-import {ExpenseInterface} from "../interfaces/types";
+import {ExpenseProps} from "../interfaces/types";
 import {useState} from "react";
 
-export function ExpensesList({expenses}: { expenses: ExpenseInterface[] }) {
+export function ExpensesList({expenses}: { expenses: ExpenseProps[] }) {
     const [expensesList, setExpensesList] = useState(expenses);
 
     function deleteExpense(expenseId: string) {
         setExpensesList(expensesList.filter(expense => expense.id !== expenseId));
     }
 
-    function addExpense(expense: ExpenseInterface) {
+    function addExpense(expense: ExpenseProps) {
         setExpensesList([...expensesList, expense]);
     }
 

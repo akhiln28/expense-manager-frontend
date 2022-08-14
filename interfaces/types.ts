@@ -1,6 +1,6 @@
 import {IconType} from "react-icons";
 
-export interface ExpenseInterface {
+export interface ExpenseProps {
     id: string;
     title: string;
     time: string;

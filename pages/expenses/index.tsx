@@ -1,9 +1,9 @@
 import { ExpensesList } from "../../components/ExpensesList";
 import { GetServerSideProps, NextPage } from "next";
-import { ExpenseInterface } from "../../interfaces/types";
+import { ExpenseProps } from "../../interfaces/types";
 import {Layout} from "../../components/Layout";
 
-const Expenses: NextPage<{ expenses: ExpenseInterface[] }> = ({expenses}) => {
+const Expenses: NextPage<{ expenses: ExpenseProps[] }> = ({expenses}) => {
     return (
         <Layout>
             <ExpensesList expenses={expenses} />

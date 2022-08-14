@@ -1,11 +1,11 @@
-import {ExpenseInterface} from "../interfaces/types";
+import {ExpenseProps} from "../interfaces/types";
 
 export function ExpenseKebabMenu({
                                      expense,
                                      setMenuOpen,
                                      deleteExpense,
                                      addExpense
-                                 }: { expense: ExpenseInterface, setMenuOpen: (value: boolean) => void, deleteExpense: (expenseId: string) => void, addExpense: (expense: ExpenseInterface) => void }) {
+                                 }: { expense: ExpenseProps, setMenuOpen: (value: boolean) => void, deleteExpense: (expenseId: string) => void, addExpense: (expense: ExpenseProps) => void }) {
     async function handleDeleteExpense() {
         const apiUrl = 'https://pro-expense-manager.herokuapp.com/expense/' + expense.id;
         let options = {
@@ -45,7 +45,7 @@ export function ExpenseKebabMenu({
         try {
             let response = await fetch(apiUrl, options);
             console.log(response);
-            const expenseCreated: ExpenseInterface = await response.json();
+            const expenseCreated: ExpenseProps = await response.json();
             console.log(expenseCreated);
             addExpense(expenseCreated);
         } catch (err) {
@@ -76,7 +76,7 @@ export function ExpenseKebabMenu({
         try {
             let response = await fetch(apiUrl, options);
             console.log(response);
-            const expenseCreated: ExpenseInterface = await response.json();
+            const expenseCreated: ExpenseProps = await response.json();
             console.log(expenseCreated);
             addExpense(expenseCreated);
         } catch (err) {

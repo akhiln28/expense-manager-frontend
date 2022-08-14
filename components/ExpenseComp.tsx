@@ -3,7 +3,11 @@ import {BiDotsVertical} from "react-icons/bi";
 import {ExpenseKebabMenu} from "./ExpenseKebabMenu";
 import {useState} from "react";
 
-export function ExpenseComp({expenseItem}: {expenseItem: ExpenseInterface}) {
+export function ExpenseComp({
+                                expenseItem,
+                                deleteExpense,
+                                addExpense
+                            }: { expenseItem: ExpenseInterface, deleteExpense: (expenseId: string) => void, addExpense: (expense: ExpenseInterface) => void }) {
     const [menuOpen, setMenuOpen] = useState(false);
     return (
         <div className="m-2 p-2 w-64 mx-auto justify-center shadow-md rounded-md bg-white">
@@ -12,9 +16,11 @@ export function ExpenseComp({expenseItem}: {expenseItem: ExpenseInterface}) {
                 <div className="text-red-500">{expenseItem.amount}₹</div>
                 <div className="text-slate-500">{expenseItem.category}</div>
                 <button onClick={() => setMenuOpen(true)}>
-                    <BiDotsVertical />
+                    <BiDotsVertical/>
                 </button>
-                {menuOpen && <ExpenseKebabMenu expenseId={expenseItem.id} setMenuOpen={setMenuOpen}/>}
+                {menuOpen &&
+                    <ExpenseKebabMenu expense={expenseItem} setMenuOpen={setMenuOpen} deleteExpense={deleteExpense}
+                                      addExpense={addExpense}/>}
             </div>
         </div>
     );

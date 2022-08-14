@@ -7,6 +7,7 @@ export interface ExpenseInterface {
     amount: number;
     category: string;
     subcategory: string;
+    payee: string;
     currency: string;
     description: string;
     rating: number;

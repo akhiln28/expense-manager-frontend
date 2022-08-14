@@ -7,10 +7,9 @@ export function ExpenseKebabMenu({
                                      addExpense
                                  }: { expense: ExpenseInterface, setMenuOpen: (value: boolean) => void, deleteExpense: (expenseId: string) => void, addExpense: (expense: ExpenseInterface) => void }) {
     async function handleDeleteExpense() {
-        const apiUrl = 'https://pro-expense-manager.herokuapp.com/expense/' + expense;
+        const apiUrl = 'https://pro-expense-manager.herokuapp.com/expense/' + expense.id;
         let options = {
             method: 'DELETE',
-            origin: '*',
             headers: {
                 'Content-Type': 'application/json'
             },
@@ -25,7 +24,7 @@ export function ExpenseKebabMenu({
     }
 
     async function handleAddExpense() {
-        const apiUrl = 'https://pro-expense-manager.herokuapp.com/expense';
+        const apiUrl = 'https://pro-expense-manager.herokuapp.com/expense/';
         let options = {
             method: 'POST',
             headers: {
@@ -45,7 +44,40 @@ export function ExpenseKebabMenu({
         }
         try {
             let response = await fetch(apiUrl, options);
+            console.log(response);
             const expenseCreated: ExpenseInterface = await response.json();
+            console.log(expenseCreated);
+            addExpense(expenseCreated);
+        } catch (err) {
+            alert(err);
+        }
+        setMenuOpen(false);
+    }
+
+    async function handleEditExpense() {
+        const apiUrl = 'https://pro-expense-manager.herokuapp.com/expense/' + expense.id;
+        let options = {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                title: expense.title,
+                amount: expense.amount,
+                category: expense.category,
+                subcategory: expense.subcategory,
+                time: expense.time,
+                payee: expense.payee,
+                currency: expense.currency,
+                description: expense.description,
+                rating: expense.rating,
+            })
+        }
+        try {
+            let response = await fetch(apiUrl, options);
+            console.log(response);
+            const expenseCreated: ExpenseInterface = await response.json();
+            console.log(expenseCreated);
             addExpense(expenseCreated);
         } catch (err) {
             alert(err);
@@ -55,12 +87,12 @@ export function ExpenseKebabMenu({
 
     return (
         <>
-            <div className={"fixed top-0 left-0 w-screen h-screen bg-slate-200 opacity-30"}
+            <div className={"fixed top-0 left-0 z-10 w-screen h-screen bg-slate-200 opacity-30"}
                  onClick={() => setMenuOpen(false)}/>
-            <div className="flex absolute top-0 left-56 flex-col fixed bg-slate-200 rounded-md p-2">
-                <button>Edit</button>
-                <button onClick={handleDeleteExpense}>Delete</button>
-                <button>Duplicate</button>
+            <div className="flex absolute top-0 right-0 z-20 flex-col fixed bg-slate-200 rounded-md p-2">
+                <button className={"p-1"}>Edit</button>
+                <button className={"p-1"} onClick={handleDeleteExpense}>Delete</button>
+                <button className={"p-1"} onClick={handleAddExpense}>Duplicate</button>
             </div>
         </>
     )

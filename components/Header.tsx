@@ -1,7 +1,7 @@
-import Link from "next/link";
 import Head from "next/head";
 import {ExpenseFormModal} from "./ExpenseFormModal";
 import React from "react";
+import {BiPlus} from "react-icons/bi";
 
 
 export function Header() {
@@ -11,14 +11,16 @@ export function Header() {
         setModalState(true);
     }
 
-    return <div className="flex flex-row w-full justify-center bg-slate-200">
+    return <div className="flex flex-row w-full justify-center bg-slate-200" id={"header"}>
         <Head>
-            <title>Expense Manager</title>
+            <title>PEM</title>
         </Head>
-        <button onClick={setModalStateTrue} className={"text-md m-2 p-2 bg-slate-400 rounded-md"}>
-            Add Expense
+        <button onClick={setModalStateTrue} className={"flex text-md m-2 p-2 bg-slate-400 rounded-md"}>
+            <BiPlus className={"m-1"}/>
+            <span className={"hidden sm:block"}>
+                Add Expense
+            </span>
         </button>
-
         {modalState && <ExpenseFormModal setOpenModal={setModalState}/>}
     </div>
 }

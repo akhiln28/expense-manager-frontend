@@ -33,11 +33,11 @@ export function ExpenseFormModal({setOpenModal}: { setOpenModal: React.Dispatch<
 
     return (
         <>
-            <div className={"fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-20"} onClick={() => {
+            <div className={"fixed top-0 left-0 w-screen h-screen z-10 bg-black opacity-30"} onClick={() => {
                 setOpenModal(false);
             }}>
             </div>
-            <div className={"flex flex-row z-50 justify-center fixed items-center bg-slate-100 p-4 m-4 rounded-md"}>
+            <div className={"flex flex-row z-50 fixed items-center bg-slate-100 p-2 m-2 rounded-md opacity-90"}>
                 <form onSubmit={handleSubmit} className="flex flex-col mx-auto">
                     <input type="text" placeholder="Title"
                            required={true}

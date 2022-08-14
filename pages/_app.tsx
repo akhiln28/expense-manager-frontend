@@ -4,8 +4,9 @@ import {useRouter} from "next/router";
 import NProgress from "nprogress";
 import {useEffect} from "react";
 import 'nprogress/nprogress.css';
+import {SessionProvider} from "next-auth/react";
 
-function MyApp({ Component, pageProps }: AppProps) {
+function MyApp({ Component, pageProps: {session, ...pageProps} }: AppProps) {
   const router = useRouter()
 
   useEffect(() => {
@@ -28,9 +29,9 @@ function MyApp({ Component, pageProps }: AppProps) {
   }, [router])
 
   return (
-  <>
+  <SessionProvider session={session}>
     <Component {...pageProps} />
-  </>)
+  </SessionProvider>)
 }
 
 export default MyApp

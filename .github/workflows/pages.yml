@@ -81,6 +81,10 @@ jobs:
         uses: actions/upload-pages-artifact@v1
         with:
           path: ./out
+        env:
+          GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          JWT_SECRET: ${{ secrets:JWT_SECRET }}
 
   # Deployment job
   deploy:

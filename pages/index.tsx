@@ -1,39 +1,34 @@
-import type {NextPage} from 'next'
-import {Layout} from "../components/Layout";
-import {ExpensesList} from "../components/ExpensesList";
-import {ExpenseProps} from "../interfaces/types";
-import {useEffect, useState} from "react";
-import {useSession} from "next-auth/react";
-import Link from "next/link";
-import {MainStats} from "../components/MainStats";
+import React, {useEffect, useState} from 'react'
+import {ClientSafeProvider, getProviders, LiteralUnion, signIn, signOut, useSession} from "next-auth/react";
+import {BuiltInProviderType} from "next-auth/providers";
+import Router from 'next/router'
 
-const Home: NextPage = () => {
-    const {data: session} = useSession({required: true});
-    const [expenses, setExpenses] = useState<ExpenseProps[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
+const Login = () => {
+    const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>,
+        ClientSafeProvider> | null>();
+
+    const {data: session} = useSession();
     useEffect(() => {
-        setIsLoading(true);
-        fetch('https://pro-expense-manager.herokuapp.com/expense/recent/')
-            .then(res => res.json())
-            .then(data => {
-                setExpenses(data);
-                setIsLoading(false);
-            })
+        const setTheProviders = async () => {
+            const providers = await getProviders();
+            setProviders(providers);
+        };
+        setTheProviders();
     }, []);
 
-    if (isLoading) {
-        return <Layout metadata={undefined}>
-            <div className={"text-xl"}>
-                Loading...
-            </div>
-        </Layout>
+    if (session && session.user) {
+        Router.push("/home");
     }
 
     return (
-        <Layout metadata={<MainStats/>}>
-            <ExpensesList title={"Recent Expenses"} expenses={expenses}/>
-        </Layout>
-    )
+        <div className="flex flex-row m-4 p-2 w-fit mx-auto bg-slate-100 rounded-xl shadow-md">
+            <div className="p-4">You are not signed in</div>
+            <button className={"p-2 m-1 bg-red-400 text-black rounded-md"}
+                    onClick={() => signIn(providers?.google.id)}>Sign in with Google
+            </button>
+        </div>
+    );
+
 }
 
-export default Home
+export default Login

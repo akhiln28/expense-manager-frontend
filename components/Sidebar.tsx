@@ -4,11 +4,13 @@ import {SidebarItem} from "./SidebarItem";
 import React, {useMemo} from "react";
 import {useRouter} from "next/router";
 import {SidebarProps} from "../interfaces/types";
-import {BiBook, BiHome, BiMoney} from "react-icons/bi";
+import {BiBook, BiCategory, BiHome, BiLogIn, BiMoney} from "react-icons/bi";
 
 const menuItems: SidebarProps[] = [
     {id: 1, name: "Expenses", Icon: BiMoney, link: "/expenses"},
     {id: 2, name: "Reports", Icon: BiBook, link: "/reports"},
+    {id: 3, name: "Categories", Icon: BiCategory, link: "/categories"},
+    {id: 4, name: "Account", Icon: BiLogIn, link: "/account"}
 ];
 
 export function Sidebar() {
@@ -28,11 +30,11 @@ export function Sidebar() {
     }
 
     return <>
-        <div className={"flex flex-col py-4 w-16 sm:w-80 h-screen text-slate-700"}>
+        <div className={"flex flex-col py-4 w-16 sm:w-80 h-screen text-slate-500"}>
             <Link href={"/"}>
-                <div className={"flex items-center p-3 hover:cursor-pointer"}>
+                <div className={"flex items-center p-3 mb-3 hover:cursor-pointer"}>
                     <BiHome className={"text-3xl mr-2"}/>
-                    <span className={"text-3xl hidden sm:block"}>PEM</span>
+                    <span className={"text-3xl font-bold hidden sm:block"}> EM </span>
                 </div>
             </Link>
             {menuItems.map(item => {

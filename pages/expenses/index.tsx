@@ -1,5 +1,5 @@
 import { ExpensesList } from "../../components/ExpensesList";
-import { GetServerSideProps, NextPage } from "next";
+import { NextPage } from "next";
 import { ExpenseProps } from "../../interfaces/types";
 import {Layout} from "../../components/Layout";
 import {useEffect, useState} from "react";
@@ -19,7 +19,7 @@ const Expenses: NextPage = () => {
     }, []);
 
     if (isLoading) {
-        return <Layout>
+        return <Layout metadata={undefined}>
             <div className={"text-xl"}>
                 Loading...
             </div>
@@ -27,7 +27,7 @@ const Expenses: NextPage = () => {
     }
 
     return (
-        <Layout>
+        <Layout metadata={undefined}>
             <ExpensesList expenses={expenses}  title={"All Expenses"}/>
         </Layout>
     )

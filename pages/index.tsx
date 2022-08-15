@@ -3,11 +3,14 @@ import {Layout} from "../components/Layout";
 import {ExpensesList} from "../components/ExpensesList";
 import {ExpenseProps} from "../interfaces/types";
 import {useEffect, useState} from "react";
+import {useSession} from "next-auth/react";
+import Link from "next/link";
+import {MainStats} from "../components/MainStats";
 
 const Home: NextPage = () => {
+    const {data: session} = useSession({required: true});
     const [expenses, setExpenses] = useState<ExpenseProps[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-
     useEffect(() => {
         setIsLoading(true);
         fetch('https://pro-expense-manager.herokuapp.com/expense/recent/')
@@ -19,7 +22,7 @@ const Home: NextPage = () => {
     }, []);
 
     if (isLoading) {
-        return <Layout>
+        return <Layout metadata={undefined}>
             <div className={"text-xl"}>
                 Loading...
             </div>
@@ -27,8 +30,8 @@ const Home: NextPage = () => {
     }
 
     return (
-        <Layout>
-            <ExpensesList title={"Recent Expenses"} expenses={expenses} />
+        <Layout metadata={<MainStats/>}>
+            <ExpensesList title={"Recent Expenses"} expenses={expenses}/>
         </Layout>
     )
 }

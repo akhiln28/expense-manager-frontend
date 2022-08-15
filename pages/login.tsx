@@ -1,19 +1,34 @@
-import {signIn, signOut, useSession} from "next-auth/react";
+import React, {useEffect, useState} from 'react'
+import {ClientSafeProvider, getProviders, LiteralUnion, signIn, signOut, useSession} from "next-auth/react";
+import {BuiltInProviderType} from "next-auth/providers";
+import Router from 'next/router'
 
-export default function Reports() {
+const Login = () => {
+    const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>,
+        ClientSafeProvider> | null>();
+
     const {data: session} = useSession();
-    console.log(session);
+    useEffect(() => {
+        const setTheProviders = async () => {
+            const providers = await getProviders();
+            setProviders(providers);
+        };
+        setTheProviders();
+    }, []);
+
     if (session && session.user) {
-        return (
-            <>
-                Welcome {session.user.email} <br/>
-                <button onClick={() => signOut()}>Sign out</button>
-            </>
-        )
+        Router.push("/");
     }
+
     return (
-        <> Not signed in <br/>
-            <button className={"m-2 p-2 bg-slate-200"} onClick={() => signIn()}>Sign in</button>
-        </>
+        <div className="flex flex-row m-4 p-2 w-fit mx-auto bg-slate-100 rounded-xl shadow-md">
+            <div className="p-4">You are not signed in</div>
+            <button className={"p-1 m-1 bg-slate-300 text-slate-700 rounded-md"}
+                    onClick={() => signIn(providers?.google.id)}>Sign in with Google
+            </button>
+        </div>
     );
+
 }
+
+export default Login
